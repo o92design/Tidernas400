@@ -8,25 +8,35 @@ public class QueueSystem : MonoBehaviour
   public Text m_QueueText;
   public List<Passenger> m_Passengers;
 
+  public Transform m_firstSpot;
+  public int m_MaxInLine;
+
   // Start is called before the first frame update
   void Start()
   {
-    
+    UpdateLine();
+    m_MaxInLine = m_Passengers.Count;
+  }
+
+  public void UpdateLine()
+  {
+    foreach (Passenger inLine in GetComponentsInChildren<Passenger>())
+    {
+      if (!m_Passengers.Contains(inLine))
+      {
+        m_Passengers.Add(inLine);
+      }
+    }
   }
 
   // Update is called once per frame
   void LateUpdate()
   {
-    foreach (Passenger inLine in GetComponentsInChildren<Passenger>())
-    {
-      if(!m_Passengers.Contains(inLine))
-      {
-        m_Passengers.Add(inLine);
-      }
-    }
+    UpdateLine();
 
     UpdateUI();
   }
+
 
   public void UpdateUI()
   {

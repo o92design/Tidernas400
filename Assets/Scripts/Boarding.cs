@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boarding : MonoBehaviour
 {
+  public TransferWaitingPerson transferLines;
   public QueueSystem m_Queue;
   public Route m_route;
   public CardHolder m_ShipHolder;
@@ -53,6 +54,8 @@ public class Boarding : MonoBehaviour
           {
             Debug.Log(inLine.m_PassengerData.Name + " boarded the ship due to interest of " + inLine.m_PassengerData.Interest.interest + " " + inLine.m_PassengerData.Rating + " / " + interestRating);
 
+            Vector2 linePosition = inLine.transform.position;
+
             int shipPassengers = ship.m_ShipData.Passengers.Count;
             inLine.transform.parent = ship.transform;
             Vector2 position = shipPassengers == 0 ? new Vector2() : ship.m_ShipData.Passengers[shipPassengers - 1].transform.localPosition;
@@ -60,6 +63,8 @@ public class Boarding : MonoBehaviour
 
             ship.m_ShipData.Passengers.Add(inLine);
             m_Queue.m_Passengers.Remove(inLine);
+
+            transferLines.TransferPerson(linePosition);
           }
           else
           {
