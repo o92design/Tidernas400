@@ -18,6 +18,8 @@ public class SeaChart : MonoBehaviour
   public Text m_TextInterest;
   public Text m_TextRating;
 
+  public Image m_image;
+
   // Start is called before the first frame update
   void Start()
   {
@@ -28,6 +30,11 @@ public class SeaChart : MonoBehaviour
 
     m_TextInterest.text = m_ChartData.Interest.interest;
     m_TextRating.text = m_ChartData.rating.ToString();
+
+    Debug.Log("Loading sprite from path " + m_ChartData.Interest.imagePath);
+    Sprite image = Resources.Load<Sprite>(m_ChartData.Interest.imagePath);
+    Debug.Log(image);
+    m_image.overrideSprite = image;
   }
 
   // Update is called once per frame

@@ -18,6 +18,7 @@ public class Interest
   public ID id;
   public string interest;
   public Color color;
+  public string imagePath;
 
   public static void DelegateInterest(Interest p_interest)
   {
@@ -27,16 +28,19 @@ public class Interest
         p_interest.id = ID.Military;
         p_interest.interest = "Militär";
         p_interest.color = Color.blue;
+        p_interest.imagePath = "2D/Military";
         break;
       case 1:
         p_interest.id = ID.History;
         p_interest.interest = "Historia";
         p_interest.color = Color.black;
+        p_interest.imagePath = "2D/History";
         break;
       case 2:
         p_interest.id = ID.Nature;
         p_interest.interest = "Naturen";
         p_interest.color = Color.green;
+        p_interest.imagePath = "2D/Nature";
         break;
     }
   }
