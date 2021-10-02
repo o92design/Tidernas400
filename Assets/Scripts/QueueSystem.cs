@@ -11,12 +11,20 @@ public class QueueSystem : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-
+    
   }
 
   // Update is called once per frame
   void LateUpdate()
   {
+    foreach (Passenger inLine in GetComponentsInChildren<Passenger>())
+    {
+      if(!m_Passengers.Contains(inLine))
+      {
+        m_Passengers.Add(inLine);
+      }
+    }
+
     UpdateUI();
   }
 
